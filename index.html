@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 教典更新詞目</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'jf-openhuninn';
+    src: url('https://cdn.jsdelivr.net/gh/justfont/open-huninn-font@v2.1/font/jf-openhuninn-2.1.ttf') format('truetype');
+    font-display: swap;
+  }
+
+  :root {
+    --ink: #2a1a0a;
+    --paper: #f5ead6;
+    --paper-dark: #e8d5b0;
+    --aged: #c8a96e;
+    --rust: #8b3a1a;
+    --teal: #1a5f5a;
+    --teal-light: #2a8a82;
+    --gold: #b8860b;
+    --gold-light: #d4a832;
+    --red: #8b1a1a;
+    --stamp-red: #c0392b;
+    --shadow: rgba(42,26,10,0.18);
+    --border: #a0824a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'jf-openhuninn', 'Noto Serif TC', serif;
+    font-size: 17px;
+    background-color: #d4b896;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(160,130,74,0.08) 28px, rgba(160,130,74,0.08) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(160,130,74,0.05) 28px, rgba(160,130,74,0.05) 29px);
+    min-height: 100vh;
+    color: var(--ink);
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(160deg, #1a3a2a 0%, #0f2a20 40%, #1a2a1a 100%);
+    border-bottom: 6px double var(--gold);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(180,140,60,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(180,140,60,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 36px 24px 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .title-block { flex: 1; }
+  .title-zh {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    font-family: 'jf-openhuninn', serif;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .stamp {
+    background: var(--stamp-red);
+    color: #fff;
+    font-size: 0.9rem;
+    font-family: 'jf-openhuninn', serif;
+    padding: 4px 10px;
+    letter-spacing: 0.12em;
+    border: 2px solid rgba(255,255,255,0.3);
+    transform: rotate(2deg);
+    white-space: nowrap;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  }
+  .count-badge {
+    color: rgba(212,168,50,0.6);
+    font-size: 0.95rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ROMANIZATION TOGGLE ── */
+  .rom-toggle-wrap {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .rom-label {
+    color: rgba(212,168,50,0.75);
+    font-size: 1rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .rom-toggle {
+    display: inline-flex;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .rom-toggle span {
+    padding: 7px 20px;
+    font-size: 1rem;
+    font-family: 'jf-openhuninn', serif;
+    color: rgba(212,168,50,0.6);
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .rom-toggle span.active {
+    background: var(--gold);
+    color: #1a1a00;
+    font-weight: 700;
+  }
+
+  /* ── CONTROLS BAR ── */
+  .controls {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 24px 0;
+  }
+  .controls-inner {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-bottom: none;
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+  .controls-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 6px, transparent 6px, transparent 12px);
+  }
+  .filter-label {
+    font-size: 0.95rem;
+    font-family: 'jf-openhuninn', serif;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  .filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border: 1.5px solid var(--border);
+    background: var(--paper-dark);
+    color: var(--ink);
+    font-family: 'jf-openhuninn', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.18s;
+    letter-spacing: 0.04em;
+  }
+  .filter-btn:hover { background: var(--aged); border-color: var(--gold); }
+  .filter-btn.active {
+    background: var(--teal);
+    color: #e8f5f3;
+    border-color: var(--teal);
+  }
+  .filter-btn .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+  .filter-btn .cnt {
+    font-size: 0.85rem;
+    opacity: 0.65;
+  }
+  .result-info {
+    font-size: 0.9rem;
+    font-family: 'jf-openhuninn', serif;
+    color: var(--rust);
+    letter-spacing: 0.04em;
+    opacity: 0.8;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+  .table-shell {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    box-shadow: 4px 4px 0 rgba(100,70,30,0.15), 8px 8px 0 rgba(100,70,30,0.07);
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    background: linear-gradient(180deg, #1a3a2a 0%, #0f2820 100%);
+    color: var(--gold-light);
+    font-size: 1rem;
+    font-family: 'jf-openhuninn', serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 12px 16px;
+    text-align: left;
+    border-right: 1px solid rgba(180,140,60,0.2);
+    white-space: nowrap;
+  }
+  thead th:last-child { border-right: none; }
+  thead th #th-rom-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  .entry-row {
+    border-bottom: 1px solid rgba(160,130,74,0.3);
+    transition: background 0.15s;
+  }
+  .entry-row:last-child { border-bottom: none; }
+  .entry-row:hover > td { background: rgba(180,140,60,0.08); }
+  .entry-row.even > td { background: rgba(240,225,195,0.4); }
+  .entry-row.even:hover > td { background: rgba(180,140,60,0.12); }
+
+  td {
+    padding: 11px 16px;
+    vertical-align: middle;
+    border-right: 1px solid rgba(160,130,74,0.2);
+    font-size: 1rem;
+    font-family: 'jf-openhuninn', serif;
+    line-height: 1.6;
+  }
+  td:last-child { border-right: none; }
+
+  .col-num { display: none; }
+  .col-word {
+    min-width: 100px;
+    font-size: 1.1rem;
+    font-family: 'jf-openhuninn', serif;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+  }
+  .col-rom {
+    min-width: 160px;
+    color: var(--teal);
+    font-size: 0.95rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.01em;
+  }
+  .col-cat {
+    width: 120px;
+  }
+  .cat-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.85rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.06em;
+    border: 1px solid;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+  .cat-一般詞條 { color: var(--teal); border-color: var(--teal); background: rgba(26,95,90,0.07); }
+  .cat-俗諺    { color: var(--rust); border-color: var(--rust); background: rgba(139,58,26,0.07); }
+  .cat-臺華共同詞 { color: var(--gold); border-color: var(--gold); background: rgba(184,134,11,0.07); }
+
+  .col-preview { width: 90px; text-align: center; }
+
+  .open-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: var(--teal);
+    color: #e8f5f3;
+    font-family: 'jf-openhuninn', serif;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-radius: 1px;
+    transition: background 0.18s;
+    white-space: nowrap;
+  }
+  .open-link-btn:hover { background: var(--teal-light); }
+
+  /* ── EMPTY STATE ── */
+  .empty-row td {
+    padding: 48px;
+    text-align: center;
+    color: var(--rust);
+    opacity: 0.5;
+    font-size: 1rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: rgba(42,26,10,0.4);
+    font-size: 0.9rem;
+    font-family: 'jf-openhuninn', serif;
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+  .ornament {
+    color: var(--gold);
+    opacity: 0.5;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .search-input {
+    flex: 1;
+    max-width: 300px;
+    padding: 8px 14px;
+    border: 1.5px solid var(--border);
+    background: var(--paper-dark);
+    color: var(--ink);
+    font-family: 'jf-openhuninn', serif;
+    font-size: 1rem;
+    border-radius: 1px;
+    outline: none;
+    transition: border-color 0.18s;
+  }
+  .search-input:focus { border-color: var(--teal); }
+  .search-input::placeholder { color: rgba(42,26,10,0.3); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header-inner { padding: 24px 16px 20px; }
+    .controls { padding: 16px 16px 0; }
+    .main-wrap { padding: 0 16px 32px; }
+    td, thead th { padding: 8px 10px; font-size: 0.9rem; }
+    .col-word { min-width: 70px; font-size: 1rem; }
+    .col-rom { min-width: 110px; font-size: 0.88rem; }
+    .col-cat { width: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="title-block">
+        <div class="title-zh">2026 教育部臺灣台語常用詞辭典・更新詞目</div>
+      </div>
+      <div class="header-meta">
+        <div class="stamp">教典 2026</div>
+        <div class="count-badge" id="total-count">共 510 筆</div>
+      </div>
+    </div>
+    <div class="rom-toggle-wrap">
+      <span class="rom-label">拼音系統：</span>
+      <div class="rom-toggle" id="romToggle" onclick="toggleRom()" title="切換拼音 / Toggle romanization">
+        <span id="rom-tai" class="active">臺羅</span>
+        <span id="rom-poj">白話字</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="filter-label">分類篩選</div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-cat="all" onclick="setFilter('all', this)">
+        <span class="dot"></span>全部 <span class="cnt" id="cnt-all">(510)</span>
+      </button>
+      <button class="filter-btn" data-cat="一般詞條" onclick="setFilter('一般詞條', this)">
+        <span class="dot"></span>一般詞條 <span class="cnt" id="cnt-1">(120)</span>
+      </button>
+      <button class="filter-btn" data-cat="俗諺" onclick="setFilter('俗諺', this)">
+        <span class="dot"></span>俗諺 <span class="cnt" id="cnt-2">(40)</span>
+      </button>
+      <button class="filter-btn" data-cat="臺華共同詞" onclick="setFilter('臺華共同詞', this)">
+        <span class="dot"></span>臺華共同詞 <span class="cnt" id="cnt-3">(350)</span>
+      </button>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="搜尋詞目…" oninput="doSearch()" />
+      </div>
+      <div class="result-info" id="result-info"></div>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="table-shell">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>詞目</th>
+          <th><span id="th-rom-label" style="font-size:0.8rem;opacity:0.7;font-weight:400;">台羅・</span>拼音</th>
+          <th class="col-cat">分類</th>
+          <th class="col-preview">連結</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <div class="ornament">❧ ✦ ❧</div>
+  <div style="margin-top:8px;">
+    資料來源：教育部台灣台語常用詞辭典・2026 年更新詞目
+  </div>
+  <div style="margin-top:6px; opacity:0.5;">
+    點擊「↗ 開啟」按鈕可於新分頁開啟教育部辭典頁面
+  </div>
+</footer>
+
+<script>
+// ── DATA ──
+const DATA = [{"詞目":"沃田","台羅":"ak-tshân","白話字":"ak-chhân","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29679/"},{"詞目":"目今","台羅":"ba̍k-kim","白話字":"ba̍k-kim","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29822/"},{"詞目":"目墘","台羅":"ba̍k-kînn","白話字":"ba̍k-kîⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/18128/"},{"詞目":"目識","台羅":"ba̍k-sik","白話字":"ba̍k-sek","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/18136/"},{"詞目":"欲無","台羅":"beh-bô","白話字":"beh-bô","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29831/"},{"詞目":"米心","台羅":"bí-sim","白話字":"bí-sim","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29860/"},{"詞目":"面慄色","台羅":"bīn-lik-sik","白話字":"bīn-lek-sek","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29924/"},{"詞目":"武腯","台羅":"bú-tún","白話字":"bú-tún","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29676/"},{"詞目":"罕得幾時","台羅":"hán-tit-kuí-sî","白話字":"hán-tit-kúi-sî","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29785/"},{"詞目":"僥雄","台羅":"hiau-hiông","白話字":"hiau-hiông","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29937/"},{"詞目":"好氣","台羅":"hó-khuì","白話字":"hó-khùi","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29765/"},{"詞目":"風絲仔","台羅":"hong-si-á","白話字":"hong-si-á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29912/"},{"詞目":"橫肉生","台羅":"huâinn-bah-senn/huînn-bah-sinn","白話字":"hoâiⁿ-bah-seⁿ/hûiⁿ-bah-siⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29864/"},{"詞目":"犯人欹","台羅":"huān-lâng-khia","白話字":"hoān-lâng-khia","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/18104/"},{"詞目":"歲數","台羅":"huè-sòo/hè-sòo","白話字":"hòe-sò͘/hè-sò͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29507/"},{"詞目":"會齊","台羅":"huē-tsê/huē-tsuê","白話字":"hōe-chê/hōe-chôe","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/19291/"},{"詞目":"應伨","台羅":"ìn-thīn","白話字":"ìn-thīn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29889/"},{"詞目":"幼膩","台羅":"iù-jī/iù-lī","白話字":"iù-jī/iù-lī","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/18098/"},{"詞目":"樣相","台羅":"iūnn-siùnn","白話字":"iūⁿ-siùⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29913/"},{"詞目":"字骨","台羅":"jī-kut/lī-kut","白話字":"jī-kut/lī-kut","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29919/"},{"詞目":"甲若","台羅":"kah-nā","白話字":"kah-nā","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29514/"},{"詞目":"干礙","台羅":"kan-gāi","白話字":"kan-gāi","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29690/"},{"詞目":"跤路","台羅":"kha-lōo","白話字":"kha-lō͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29875/"},{"詞目":"尻川花","台羅":"kha-tshng-hue","白話字":"kha-chhng-hoe","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29941/"},{"詞目":"欠點","台羅":"khiàm-tiám","白話字":"khiàm-tiám","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/17984/"},{"詞目":"起跤踉","台羅":"khí-kha-lōng","白話字":"khí-kha-lōng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29262/"},{"詞目":"起起","台羅":"khí-khí","白話字":"khí-khí","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29902/"},{"詞目":"輕健","台羅":"khin-kiānn","白話字":"khin-kiāⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29823/"},{"詞目":"苦尾","台羅":"khóo-bué/khóo-bé","白話字":"khó͘-bóe/khó͘-bé","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29916/"},{"詞目":"苦痛","台羅":"khóo-thàng","白話字":"khó͘-thàng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/30281/"},{"詞目":"屈強","台羅":"khut-kiông","白話字":"khut-kiông","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29892/"},{"詞目":"枝骨","台羅":"ki-kut","白話字":"ki-kut","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29923/"},{"詞目":"驚見","台羅":"kiann-kìnn","白話字":"kiaⁿ-kìⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29804/"},{"詞目":"行跤到","台羅":"kiânn-kha-kàu","白話字":"kiâⁿ-kha-kàu","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29846/"},{"詞目":"驕頭","台羅":"kiau-thâu","白話字":"kiau-thâu","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29927/"},{"詞目":"緊猛","台羅":"kín-mé/kín-mí","白話字":"kín-mé/kín-mí","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29866/"},{"詞目":"勼勼圇圇","台羅":"kiu-kiu-lun-lun","白話字":"kiu-kiu-lun-lun","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29684/"},{"詞目":"光生","台羅":"kng-senn/kng-sinn","白話字":"kng-seⁿ/kng-siⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29938/"},{"詞目":"顧路","台羅":"kòo-lōo","白話字":"kò͘-lō͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29786/"},{"詞目":"過運","台羅":"kuè-ūn/kè-ūn","白話字":"kòe-ūn/kè-ūn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29772/"},{"詞目":"落肉","台羅":"lak-bah","白話字":"lak-bah","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29928/"},{"詞目":"落米仔","台羅":"lak-bí-á","白話字":"lak-bí-á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29796/"},{"詞目":"落粽","台羅":"làu-tsàng","白話字":"làu-chàng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/30279/"},{"詞目":"落坐","台羅":"làu-tshe̍h","白話字":"làu-chhe̍h","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29816/"},{"詞目":"流汗糝滴","台羅":"lâu-kuānn-sám-tih","白話字":"lâu-kōaⁿ-sám-tih","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/20060/"},{"詞目":"掠外","台羅":"lia̍h-guā","白話字":"lia̍h-gōa","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29792/"},{"詞目":"鐮𠠝仔","台羅":"liâm-li̍k-á","白話字":"liâm-le̍k-á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29691/"},{"詞目":"裂線綴","台羅":"li̍h-suànn-tsuē/li̍h-suànn-tsē","白話字":"li̍h-sòaⁿ-chōe/li̍h-sòaⁿ-chē","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29934/"},{"詞目":"慄色","台羅":"lik-sik","白話字":"lek-sek","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29899/"},{"詞目":"躼躼長","台羅":"lò-lò-tn̂g","白話字":"lò-lò-tn̂g","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29794/"},{"詞目":"踉","台羅":"lōng","白話字":"lōng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29805/"},{"詞目":"閬曠","台羅":"lòng-khòng","白話字":"lòng-khòng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29880/"},{"詞目":"凹窩","台羅":"nah-o","白話字":"nah-o","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29803/"},{"詞目":"若甲","台羅":"nā-kah","白話字":"nā-kah","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29515/"},{"詞目":"怏頓","台羅":"ǹg-tǹg","白話字":"ǹg-tǹg","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29814/"},{"詞目":"貓仔食","台羅":"niau-á-tsia̍h","白話字":"niau-á-chia̍h","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29375/"},{"詞目":"貓毛","台羅":"niau-mn̂g","白話字":"niau-mn̂g","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/28185/"},{"詞目":"軟略","台羅":"nńg-lio̍h","白話字":"nńg-lio̍h","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29894/"},{"詞目":"平坐徛","台羅":"pênn-tsē-khiā/pînn-tsē-khiā","白話字":"pêⁿ-chē-khiā/pîⁿ-chē-khiā","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29883/"},{"詞目":"拍殕光","台羅":"phah-phú-kng","白話字":"phah-phú-kng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/27599/"},{"詞目":"歹心行","台羅":"pháinn-sim-hīng","白話字":"pháiⁿ-sim-hēng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29773/"},{"詞目":"歹衝衝","台羅":"pháinn-tshìng-tshìng","白話字":"pháiⁿ-chhèng-chhèng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29386/"},{"詞目":"癖鼻","台羅":"phiah-phīnn","白話字":"phiah-phīⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29769/"},{"詞目":"僻話","台羅":"phiah-uē","白話字":"phiah-ōe","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29830/"},{"詞目":"袚袚","台羅":"phua̍h-phua̍h","白話字":"phoa̍h-phoa̍h","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29925/"},{"詞目":"胚命","台羅":"phue-miā/phe-miā","白話字":"phoe-miā/phe-miā","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29896/"},{"詞目":"配搭","台羅":"phuè-tah","白話字":"phòe-tah","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29932/"},{"詞目":"噼","台羅":"piah/piak","白話字":"piah/piak","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29766/"},{"詞目":"拚重汗","台羅":"piànn-tāng-kuānn","白話字":"piàⁿ-tāng-kōaⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29771/"},{"詞目":"變天","台羅":"piàn-thian","白話字":"piàn-thian","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29884/"},{"詞目":"變天","台羅":"piàn-thinn","白話字":"piàn-thiⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/19708/"},{"詞目":"補所","台羅":"póo-sóo","白話字":"pó͘-só͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29904/"},{"詞目":"半上路下","台羅":"puànn-tsiūnn-lōo-ē","白話字":"pòaⁿ-chiūⁿ-lō͘-ē","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/19757/"},{"詞目":"撒體","台羅":"sāi-thái","白話字":"sāi-thái","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29099/"},{"詞目":"生菇閬殕","台羅":"senn-koo-làng-phú/sinn-koo-làng-phú","白話字":"seⁿ-ko͘-làng-phú/siⁿ-ko͘-làng-phú","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29886/"},{"詞目":"篠","台羅":"siāu","白話字":"siāu","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/17113/"},{"詞目":"乘紲","台羅":"sīng-suà","白話字":"sēng-sòa","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29820/"},{"詞目":"死炸","台羅":"sí-tsuànn","白話字":"sí-chòaⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29897/"},{"詞目":"相捽路","台羅":"sio-sut-lōo","白話字":"sio-sut-lō͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29783/"},{"詞目":"損角","台羅":"sńg-kak","白話字":"sńg-kak","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29944/"},{"詞目":"隨人","台羅":"suî-lâng","白話字":"sûi-lâng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29887/"},{"詞目":"逐不時","台羅":"ta̍k-put-sî","白話字":"ta̍k-put-sî","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29812/"},{"詞目":"頭坎","台羅":"thâu-khám","白話字":"thâu-khám","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29930/"},{"詞目":"頭毛試火","台羅":"thâu-mn̂g-tshì-hué/thâu-mn̂g-tshì-hé","白話字":"thâu-mn̂g-chhì-hóe/thâu-mn̂g-chhì-hé","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29767/"},{"詞目":"頭牲仔","台羅":"thâu-senn-á/thâu-sinn-á","白話字":"thâu-seⁿ-á/thâu-siⁿ-á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29935/"},{"詞目":"頭對","台羅":"thâu-tuì","白話字":"thâu-tùi","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29789/"},{"詞目":"裼食","台羅":"theh-tsia̍h","白話字":"theh-chia̍h","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29797/"},{"詞目":"拆破面","台羅":"thiah-phuà-bīn","白話字":"thiah-phòa-bīn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29851/"},{"詞目":"討捔","台羅":"thó-ka̍k","白話字":"thó-ka̍k","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29835/"},{"詞目":"點陳","台羅":"tiám-tîn","白話字":"tiám-tîn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29905/"},{"詞目":"頂","台羅":"tiánn","白話字":"tiáⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29942/"},{"詞目":"窵遠","台羅":"tiàu-uán","白話字":"tiàu-oán","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29903/"},{"詞目":"在來","台羅":"tsāi-lâi","白話字":"chāi-lâi","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29852/"},{"詞目":"斬","台羅":"tsánn","白話字":"cháⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/15756/"},{"詞目":"吵班","台羅":"tshá-pan","白話字":"chhá-pan","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29901/"},{"詞目":"田塗","台羅":"tshân-thôo","白話字":"chhân-thô͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29837/"},{"詞目":"藏步","台羅":"tshàng-pōo","白話字":"chhàng-pō͘","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29939/"},{"詞目":"臭尿破羶","台羅":"tshàu-jiō-phuà-hiàn/tshàu-liō-phuà-hiàn","白話字":"chhàu-jiō-phòa-hiàn/chhàu-liō-phòa-hiàn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/28460/"},{"詞目":"生傷","台羅":"tshenn-siong/tshinn-siong","白話字":"chheⁿ-siong/chhiⁿ-siong","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29833/"},{"詞目":"車逝","台羅":"tshia-tsuā","白話字":"chhia-chōa","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29832/"},{"詞目":"請佮辭","台羅":"tshiánn-kah-sî","白話字":"chhiáⁿ-kah-sî","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29906/"},{"詞目":"清湯","台羅":"tshing-thng","白話字":"chheng-thng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/30282/"},{"詞目":"縱貫","台羅":"tshiong-kuàn","白話字":"chhiong-koàn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29854/"},{"詞目":"手節","台羅":"tshiú-tsat","白話字":"chhiú-chat","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29943/"},{"詞目":"取中欄","台羅":"tshú-tiong-nuâ","白話字":"chhú-tiong-nôa","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29839/"},{"詞目":"揣空縫","台羅":"tshuē-khang-phāng/tshē-khang-phāng","白話字":"chhōe-khang-phāng/chhē-khang-phāng","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29921/"},{"詞目":"喙饞","台羅":"tshuì-sâi","白話字":"chhùi-sâi","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29675/"},{"詞目":"喙𪁎","台羅":"tshuì-tshio","白話字":"chhùi-chhio","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29909/"},{"詞目":"接紲","台羅":"tsiap-suà","白話字":"chiap-sòa","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29841/"},{"詞目":"照品照行","台羅":"tsiàu-phín-tsiàu-kiânn","白話字":"chiàu-phín-chiàu-kiâⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/19730/"},{"詞目":"精傱","台羅":"tsing-tsông","白話字":"cheng-chông","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29798/"},{"詞目":"執死訣","台羅":"tsip-sí-kuat","白話字":"chip-sí-koat","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/27513/"},{"詞目":"這久","台羅":"tsit-kú","白話字":"chit-kú","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29843/"},{"詞目":"水捘仔","台羅":"tsuí-tsūn-á","白話字":"chúi-chūn-á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29827/"},{"詞目":"注神","台羅":"tsù-sîn","白話字":"chù-sîn","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/28489/"},{"詞目":"大葩尾","台羅":"tuā-pha-bué/tuā-pha-bé","白話字":"tōa-pha-bóe/tōa-pha-bé","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29859/"},{"詞目":"拄著仔","台羅":"tú-tio̍h--á","白話字":"tú-tio̍h--á","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29811/"},{"詞目":"有𦉎無捾","台羅":"ū-sui-bô-kuānn","白話字":"ū-sui-bô-kōaⁿ","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29918/"},{"詞目":"活骨","台羅":"ua̍h-kut","白話字":"oa̍h-kut","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29380/"},{"詞目":"話鬚","台羅":"uē-tshiu","白話字":"ōe-chhiu","分類":"一般詞條","連結":"https://sutian.moe.edu.tw/zh-hant/su/29888/"},{"詞目":"目睭看佇雙糕潤。","台羅":"Ba̍k-tsiu khuànn tī siang-ko-jūn.","白話字":"Ba̍k-chiu khòaⁿ tī siang-ko-jūn.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29747/"},{"詞目":"目睭生佇頭殼頂。","台羅":"Ba̍k-tsiu senn tī thâu-khak-tíng.","白話字":"Ba̍k-chiu seⁿ tī thâu-khak-téng.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/27853/"},{"詞目":"目睭大細蕊。","台羅":"Ba̍k-tsiu tuā-sè luí.","白話字":"Ba̍k-chiu tōa-sè lúi.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29748/"},{"詞目":"無米兼閏月。","台羅":"Bô bí kiam jūn-gue̍h.","白話字":"Bô bí kiam jūn-goe̍h.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29750/"},{"詞目":"未想贏，著先想輸。","台羅":"Buē siūnn iânn, tio̍h sing siūnn su.","白話字":"Bōe siūⁿ iâⁿ, tio̍h seng siūⁿ su.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29751/"},{"詞目":"夯石頭硩心肝。","台羅":"Giâ tsio̍h-thâu teh sim-kuann.","白話字":"Giâ chio̍h-thâu teh sim-koaⁿ.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29752/"},{"詞目":"囡仔會走，大人逐甲嘛嘛吼。","台羅":"Gín-á ē tsáu, tuā-lâng jiok kah mà-mà-háu.","白話字":"Gín-á ē cháu, tōa-lâng jiok kah mà-mà-háu.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29732/"},{"詞目":"囡仔三歲牢皮，五歲牢骨。","台羅":"Gín-á sann huè tiâu phuê, gōo huè tiâu kut.","白話字":"Gín-á saⁿ hòe tiâu phôe, gō͘ hòe tiâu kut.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29753/"},{"詞目":"囡仔人跳過溝，食三甌。","台羅":"Gín-á-lâng thiàu-kuè kau, tsia̍h sann au.","白話字":"Gín-á-lâng thiàu-kòe kau, chia̍h saⁿ au.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29733/"},{"詞目":"囡仔人，大人心肝。","台羅":"Gín-á-lâng, tuā-lâng sim-kuann.","白話字":"Gín-á-lâng, tōa-lâng sim-koaⁿ.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29754/"},{"詞目":"牛毋通𠢕行，人毋通出名。","台羅":"Gû m̄-thang gâu kiânn, lâng m̄-thang tshut-miâ.","白話字":"Gû m̄-thang gâu kiâⁿ, lâng m̄-thang chhut-miâ.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29755/"},{"詞目":"牛鼻毋拎，拎牛尾。","台羅":"Gû phīnn m̄ lîng, lîng gû bué.","白話字":"Gû phīⁿ m̄ lêng, lêng gû bóe.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/27924/"},{"詞目":"牛屎龜牚石枋。","台羅":"Gû-sái-ku thènn tsio̍h-pang.","白話字":"Gû-sái-ku thèⁿ chio̍h-pang.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29734/"},{"詞目":"喝水會堅凍。","台羅":"Huah tsuí ē kian-tàng.","白話字":"Hoah chúi ē kian-tàng.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29737/"},{"詞目":"火過矣，才咧炰芋。","台羅":"Hué kuè--ah, tsiah teh pû ōo.","白話字":"Hóe kòe--ah, chiah teh pû ō͘.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29738/"},{"詞目":"火燒跤，隨人掰。","台羅":"Hué sio kha, suî-lâng pué.","白話字":"Hóe sio kha, sûi-lâng póe.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29756/"},{"詞目":"火燒跤後蹬。","台羅":"Hué sio kha-āu-tenn.","白話字":"Hóe sio kha-āu-teⁿ.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29757/"},{"詞目":"火車過了，才歕觱仔。","台羅":"Hué-tshia kuè-liáu, tsiah pûn pi-á.","白話字":"Hóe-chhia kòe-liáu, chiah pûn pi-á.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29758/"},{"詞目":"教囝學泅，毋通教囝樹。","台羅":"Kà kiánn o̍h siû, m̄-thang kà kiánn peh tshiū.","白話字":"Kà kiáⁿ o̍h siû, m̄-thang kà kiáⁿ peh chhiū.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29746/"},{"詞目":"江湖一點訣，講破毋值三仙錢。","台羅":"Kang-ôo tsi̍t tiám kuat, kóng-phuà m̄-ta̍t sann sián tsînn.","白話字":"Kang-ô͘ chi̍t tiám koat, kóng-phòa m̄-ta̍t saⁿ sián chîⁿ.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29728/"},{"詞目":"巧的食戇，戇的食天公。","台羅":"Khiáu--ê tsia̍h gōng, gōng--ê tsia̍h Thinn-kong.","白話字":"Khiáu--ê chia̍h gōng, gōng--ê chia̍h Thiⁿ-kong.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29730/"},{"詞目":"乞食望普渡，做兵望落雨。","台羅":"Khit-tsia̍h bāng phóo-tōo, tsò-ping bāng lo̍h-hōo.","白話字":"Khit-chia̍h bāng phó͘-tō͘, chò-peng bāng lo̍h-hō͘.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29739/"},{"詞目":"囥酒會芳，囥柑仔爛規籠。","台羅":"Khǹg tsiú ē phang, khǹg kam-á nuā kui láng.","白話字":"Khǹg chiú ē phang, khǹg kam-á nōa kui láng.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29731/"},{"詞目":"看田面，毋通看人面。","台羅":"Khuànn tshân-bīn, m̄-thang khuànn lâng-bīn.","白話字":"Khòaⁿ chhân-bīn, m̄-thang khòaⁿ lâng-bīn.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29759/"},{"詞目":"筊精，生理虎。","台羅":"Kiáu tsinn, sing-lí-hóo.","白話字":"Kiáu chiⁿ, seng-lí-hó͘.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29760/"},{"詞目":"功德做佇草仔埔。","台羅":"Kong-tik tsò tī tsháu-á-poo.","白話字":"Kong-tek chò tī chháu-á-po͘.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29729/"},{"詞目":"內行看布底，外行綴人買。","台羅":"Lāi-hâng khuànn pòo-té, guā-hâng tuè lâng bé.","白話字":"Lāi-hâng khòaⁿ pò͘-té, gōa-hâng tòe lâng bé.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29761/"},{"詞目":"六月賣火熥。","台羅":"La̍k--gue̍h bē hué-thang.","白話字":"La̍k--goe̍h bē hóe-thang.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29762/"},{"詞目":"六月棉被，揀人蓋。","台羅":"La̍k-gue̍h mî-phuē, kíng lâng kah.","白話字":"La̍k-goe̍h mî-phōe, kéng lâng kah.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29745/"},{"詞目":"人比人，氣死人。","台羅":"Lâng pí lâng, khì-sí lâng.","白話字":"Lâng pí lâng, khì-sí lâng.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29763/"},{"詞目":"五虎下西山。","台羅":"Ngóo hóo hā se-san.","白話字":"Ngó͘ hó͘ hā se-san.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29735/"},{"詞目":"五色人，講十色話。","台羅":"Ngóo sik lâng, kóng tsa̍p sik uē.","白話字":"Ngó͘ sek lâng, kóng cha̍p sek ōe.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29736/"},{"詞目":"年頭食鹹菜，年尾才轉嗽。","台羅":"Nî-thâu tsia̍h kiâm-tshài, nî-bué tsiah tńg-sàu.","白話字":"Nî-thâu chia̍h kiâm-chhài, nî-bóe chiah tńg-sàu.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29764/"},{"詞目":"先顧腹肚，才顧佛祖。","台羅":"Sing kòo pak-tóo, tsiah kòo Pu̍t-tsóo.","白話字":"Seng kò͘ pak-tó͘, chiah kò͘ Pu̍t-chó͘.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/27819/"},{"詞目":"算命仔喙糊瘰瘰。","台羅":"Sǹg-miā-á tshuì hôo-luì-luì.","白話字":"Sǹg-miā-á chhùi hô͘-lùi-lùi.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29744/"},{"詞目":"天地無餓死人。","台羅":"Thinn-tē bô gō-sí lâng.","白話字":"Thiⁿ-tē bô gō-sí lâng.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29740/"},{"詞目":"出去若拍毋見，轉來若抾著。","台羅":"Tshut--khì ná phah-m̄-kìnn, tńg--lâi ná khioh--tio̍h.","白話字":"Chhut--khì ná phah-m̄-kìⁿ, tńg--lâi ná khioh--tio̍h.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29743/"},{"詞目":"出門看天色，入門看目色。","台羅":"Tshut-mn̂g khuànn thinn-sik, ji̍p-mn̂g khuànn ba̍k-sik.","白話字":"Chhut-mn̂g khòaⁿ thiⁿ-sek, ji̍p-mn̂g khòaⁿ ba̍k-sek.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29742/"},{"詞目":"食偌濟，做偌濟，註好好。","台羅":"Tsia̍h guā-tsē, tsò guā-tsē, tsù-hó-hó.","白話字":"Chia̍h gōa-chē, chò gōa-chē, chù-hó-hó.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29749/"},{"詞目":"水鬼騙城隍。","台羅":"Tsuí-kuí phiàn Sîng-hông.","白話字":"Chúi-kúi phiàn Sêng-hông.","分類":"俗諺","連結":"https://sutian.moe.edu.tw/zh-hant/su/29741/"},{"詞目":"埋葬","台羅":"bâi-tsòng","白話字":"bâi-chòng","分類":"臺華共同詞","連結":""},{"詞目":"萬用","台羅":"bān-iōng","白話字":"bān-iōng","分類":"臺華共同詞","連結":""},{"詞目":"萬國","台羅":"bān-kok","白話字":"bān-kok","分類":"臺華共同詞","連結":""},{"詞目":"慢車道","台羅":"bān-tshia-tō","白話字":"bān-chhia-tō","分類":"臺華共同詞","連結":""},{"詞目":"美容院","台羅":"bí-iông-īnn","白話字":"bí-iông-īⁿ","分類":"臺華共同詞","連結":""},{"詞目":"美人計","台羅":"bí-jîn-kè/bí-lîn-kè","白話字":"bí-jîn-kè/bí-lîn-kè","分類":"臺華共同詞","連結":""},{"詞目":"美貌","台羅":"bí-māu","白話字":"bí-māu","分類":"臺華共同詞","連結":""},{"詞目":"未婚夫","台羅":"bī-hun-hu","白話字":"bī-hun-hu","分類":"臺華共同詞","連結":""},{"詞目":"未婚妻","台羅":"bī-hun-tshe","白話字":"bī-hun-chhe","分類":"臺華共同詞","連結":""},{"詞目":"未知數","台羅":"bī-ti-sòo","白話字":"bī-ti-sò͘","分類":"臺華共同詞","連結":""},{"詞目":"免職","台羅":"bián-tsit","白話字":"bián-chit","分類":"臺華共同詞","連結":""},{"詞目":"滅口","台羅":"bia̍t-khió","白話字":"bia̍t-khió","分類":"臺華共同詞","連結":""},{"詞目":"滅種","台羅":"bia̍t-tsíng","白話字":"bia̍t-chéng","分類":"臺華共同詞","連結":""},{"詞目":"民宿","台羅":"bîn-siok","白話字":"bîn-siok","分類":"臺華共同詞","連結":""},{"詞目":"面相","台羅":"bīn-siòng","白話字":"bīn-siòng","分類":"臺華共同詞","連結":""},{"詞目":"盟軍","台羅":"bîng-kun","白話字":"bêng-kun","分類":"臺華共同詞","連結":""},{"詞目":"明牌","台羅":"bîng-pâi","白話字":"bêng-pâi","分類":"臺華共同詞","連結":""},{"詞目":"募兵","台羅":"bōo-ping","白話字":"bō͘-peng","分類":"臺華共同詞","連結":""},{"詞目":"武士刀","台羅":"bú-sū-to","白話字":"bú-sū-to","分類":"臺華共同詞","連結":""},{"詞目":"武旦","台羅":"bú-tuànn","白話字":"bú-tòaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"舞台劇","台羅":"bú-tâi-kio̍k","白話字":"bú-tâi-kio̍k","分類":"臺華共同詞","連結":""},{"詞目":"舞蹈家","台羅":"bú-tō-ka","白話字":"bú-tō-ka","分類":"臺華共同詞","連結":""},{"詞目":"舞者","台羅":"bú-tsiá","白話字":"bú-chiá","分類":"臺華共同詞","連結":""},{"詞目":"無花果","台羅":"bû-hua-kó","白話字":"bû-hoa-kó","分類":"臺華共同詞","連結":""},{"詞目":"無奇不有","台羅":"bû-kî-put-iú","白話字":"bû-kî-put-iú","分類":"臺華共同詞","連結":""},{"詞目":"無敵","台羅":"bû-ti̍k","白話字":"bû-te̍k","分類":"臺華共同詞","連結":""},{"詞目":"誣告","台羅":"bû-kò","白話字":"bû-kò","分類":"臺華共同詞","連結":""},{"詞目":"巫師","台羅":"bû-su","白話字":"bû-su","分類":"臺華共同詞","連結":""},{"詞目":"晚輩","台羅":"buán-puè","白話字":"boán-pòe","分類":"臺華共同詞","連結":""},{"詞目":"末日","台羅":"bua̍t-ji̍t/bua̍t-li̍t","白話字":"boa̍t-ji̍t/boa̍t-li̍t","分類":"臺華共同詞","連結":""},{"詞目":"末路","台羅":"bua̍t-lōo","白話字":"boa̍t-lō͘","分類":"臺華共同詞","連結":""},{"詞目":"文具店","台羅":"bûn-kū-tiàm","白話字":"bûn-kū-tiàm","分類":"臺華共同詞","連結":""},{"詞目":"文摘","台羅":"bûn-tiah","白話字":"bûn-tiah","分類":"臺華共同詞","連結":""},{"詞目":"眼中釘","台羅":"gán-tiong-ting","白話字":"gán-tiong-teng","分類":"臺華共同詞","連結":""},{"詞目":"霓虹燈","台羅":"gê-hông-ting","白話字":"gê-hông-teng","分類":"臺華共同詞","連結":""},{"詞目":"藝名","台羅":"gē-miâ","白話字":"gē-miâ","分類":"臺華共同詞","連結":""},{"詞目":"藝術品","台羅":"gē-su̍t-phín","白話字":"gē-su̍t-phín","分類":"臺華共同詞","連結":""},{"詞目":"語詞","台羅":"gí-sû/gú-sû","白話字":"gí-sû/gú-sû","分類":"臺華共同詞","連結":""},{"詞目":"儀隊","台羅":"gî-tuī","白話字":"gî-tūi","分類":"臺華共同詞","連結":""},{"詞目":"義演","台羅":"gī-ián","白話字":"gī-ián","分類":"臺華共同詞","連結":""},{"詞目":"義警","台羅":"gī-kíng","白話字":"gī-kéng","分類":"臺華共同詞","連結":""},{"詞目":"嚴刑","台羅":"giâm-hîng","白話字":"giâm-hêng","分類":"臺華共同詞","連結":""},{"詞目":"嚴厲","台羅":"giâm-lē","白話字":"giâm-lē","分類":"臺華共同詞","連結":""},{"詞目":"嚴辦","台羅":"giâm-pān","白話字":"giâm-pān","分類":"臺華共同詞","連結":""},{"詞目":"閻羅","台羅":"Giâm-lô","白話字":"Giâm-lô","分類":"臺華共同詞","連結":""},{"詞目":"驗尿","台羅":"giām-jiō/giām-liō","白話字":"giām-jiō/giām-liō","分類":"臺華共同詞","連結":""},{"詞目":"驗光","台羅":"giām-kng","白話字":"giām-kng","分類":"臺華共同詞","連結":""},{"詞目":"驗票","台羅":"giām-phiò","白話字":"giām-phiò","分類":"臺華共同詞","連結":""},{"詞目":"驗車","台羅":"giām-tshia","白話字":"giām-chhia","分類":"臺華共同詞","連結":""},{"詞目":"錦旗","台羅":"gím-kî","白話字":"gím-kî","分類":"臺華共同詞","連結":""},{"詞目":"錦繡","台羅":"gím-siù","白話字":"gím-siù","分類":"臺華共同詞","連結":""},{"詞目":"銀牌","台羅":"gîn-pâi/gûn-pâi","白話字":"gîn-pâi/gûn-pâi","分類":"臺華共同詞","連結":""},{"詞目":"銀幣","台羅":"gîn-pè/gûn-pè","白話字":"gîn-pè/gûn-pè","分類":"臺華共同詞","連結":""},{"詞目":"誤殺","台羅":"gōo-sat","白話字":"gō͘-sat","分類":"臺華共同詞","連結":""},{"詞目":"誤傷","台羅":"gōo-siong","白話字":"gō͘-siong","分類":"臺華共同詞","連結":""},{"詞目":"誤導","台羅":"gōo-tō","白話字":"gō͘-tō","分類":"臺華共同詞","連結":""},{"詞目":"外務員","台羅":"guā-bū-uân","白話字":"gōa-bū-oân","分類":"臺華共同詞","連結":""},{"詞目":"外交官","台羅":"guā-kau-kuann","白話字":"gōa-kau-koaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"外交部","台羅":"Guā-kau-pōo","白話字":"Gōa-kau-pō͘","分類":"臺華共同詞","連結":""},{"詞目":"外交團","台羅":"guā-kau-thuân","白話字":"gōa-kau-thoân","分類":"臺華共同詞","連結":""},{"詞目":"外國話","台羅":"guā-kok-uē","白話字":"gōa-kok-ōe","分類":"臺華共同詞","連結":""},{"詞目":"外縣市","台羅":"guā-kuān-tshī","白話字":"gōa-koān-chhī","分類":"臺華共同詞","連結":""},{"詞目":"外來語","台羅":"guā-lâi-gí/guā-lâi-gú","白話字":"gōa-lâi-gí/gōa-lâi-gú","分類":"臺華共同詞","連結":""},{"詞目":"外皮","台羅":"guā-phuê/guā-phê","白話字":"gōa-phôe/gōa-phê","分類":"臺華共同詞","連結":""},{"詞目":"外島","台羅":"guā-tó/guā-tóo","白話字":"gōa-tó/gōa-tó͘","分類":"臺華共同詞","連結":""},{"詞目":"原案","台羅":"guân-àn","白話字":"goân-àn","分類":"臺華共同詞","連結":""},{"詞目":"原件","台羅":"guân-kiānn","白話字":"goân-kiāⁿ","分類":"臺華共同詞","連結":""},{"詞目":"原稿","台羅":"guân-kó","白話字":"goân-kó","分類":"臺華共同詞","連結":""},{"詞目":"原貌","台羅":"guân-māu","白話字":"goân-māu","分類":"臺華共同詞","連結":""},{"詞目":"原配","台羅":"guân-phuè","白話字":"goân-phòe","分類":"臺華共同詞","連結":""},{"詞目":"原汁","台羅":"guân-tsiap","白話字":"goân-chiap","分類":"臺華共同詞","連結":""},{"詞目":"原作者","台羅":"guân-tsok-tsiá","白話字":"goân-chok-chiá","分類":"臺華共同詞","連結":""},{"詞目":"原罪","台羅":"guân-tsuē","白話字":"goân-chōe","分類":"臺華共同詞","連結":""},{"詞目":"原子能","台羅":"guân-tsú-lîng","白話字":"goân-chú-lêng","分類":"臺華共同詞","連結":""},{"詞目":"原子彈","台羅":"guân-tsú-tuânn","白話字":"goân-chú-tôaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"元旦","台羅":"Guân-tàn","白話字":"Goân-tàn","分類":"臺華共同詞","連結":""},{"詞目":"外甥女","台羅":"guē-sing-lú/guē-sing-lí","白話字":"gōe-seng-lú/gōe-seng-lí","分類":"臺華共同詞","連結":""},{"詞目":"月事","台羅":"gue̍h-sū/ge̍h-sū","白話字":"goe̍h-sū/ge̍h-sū","分類":"臺華共同詞","連結":""},{"詞目":"牛鞭","台羅":"gû-pian","白話字":"gû-pian","分類":"臺華共同詞","連結":""},{"詞目":"寓言","台羅":"gū-giân","白話字":"gū-giân","分類":"臺華共同詞","連結":""},{"詞目":"危難","台羅":"guî-lān","白話字":"gûi-lān","分類":"臺華共同詞","連結":""},{"詞目":"孝服","台羅":"hà-ho̍k","白話字":"hà-ho̍k","分類":"臺華共同詞","連結":""},{"詞目":"海港","台羅":"hái-káng","白話字":"hái-káng","分類":"臺華共同詞","連結":""},{"詞目":"海螺","台羅":"hái-lê","白話字":"hái-lê","分類":"臺華共同詞","連結":""},{"詞目":"海里","台羅":"hái-lí","白話字":"hái-lí","分類":"臺華共同詞","連結":""},{"詞目":"海膽","台羅":"hái-tánn","白話字":"hái-táⁿ","分類":"臺華共同詞","連結":""},{"詞目":"海釣","台羅":"hái-tiò","白話字":"hái-tiò","分類":"臺華共同詞","連結":""},{"詞目":"下意識","台羅":"hā-ì-sik","白話字":"hā-ì-sek","分類":"臺華共同詞","連結":""},{"詞目":"下游","台羅":"hā-iû","白話字":"hā-iû","分類":"臺華共同詞","連結":""},{"詞目":"下級","台羅":"hā-kip","白話字":"hā-kip","分類":"臺華共同詞","連結":""},{"詞目":"下賤","台羅":"hā-tsiān","白話字":"hā-chiān","分類":"臺華共同詞","連結":""},{"詞目":"加壓","台羅":"ka-ap","白話字":"ka-ap","分類":"臺華共同詞","連結":""},{"詞目":"加害","台羅":"ka-hāi","白話字":"ka-hāi","分類":"臺華共同詞","連結":""},{"詞目":"加護病房","台羅":"ka-hōo pēnn-pâng/ka-hōo pīnn-pâng","白話字":"ka-hō͘ pēⁿ-pâng/ka-hō͘ pīⁿ-pâng","分類":"臺華共同詞","連結":""},{"詞目":"加工業","台羅":"ka-kang-gia̍p","白話字":"ka-kang-gia̍p","分類":"臺華共同詞","連結":""},{"詞目":"加工廠","台羅":"ka-kang-tshiúnn","白話字":"ka-kang-chhiúⁿ","分類":"臺華共同詞","連結":""},{"詞目":"加給","台羅":"ka-kip","白話字":"ka-kip","分類":"臺華共同詞","連結":""},{"詞目":"加班車","台羅":"ka-pan-tshia","白話字":"ka-pan-chhia","分類":"臺華共同詞","連結":""},{"詞目":"加菜金","台羅":"ka-tshài-kim","白話字":"ka-chhài-kim","分類":"臺華共同詞","連結":""},{"詞目":"加持","台羅":"ka-tshî","白話字":"ka-chhî","分類":"臺華共同詞","連結":""},{"詞目":"家務事","台羅":"ka-bū-sū","白話字":"ka-bū-sū","分類":"臺華共同詞","連結":""},{"詞目":"家業","台羅":"ka-gia̍p","白話字":"ka-gia̍p","分類":"臺華共同詞","連結":""},{"詞目":"家風","台羅":"ka-hong","白話字":"ka-hong","分類":"臺華共同詞","連結":""},{"詞目":"家訓","台羅":"ka-hùn","白話字":"ka-hùn","分類":"臺華共同詞","連結":""},{"詞目":"家規","台羅":"ka-kui","白話字":"ka-kui","分類":"臺華共同詞","連結":""},{"詞目":"家世","台羅":"ka-sè","白話字":"ka-sè","分類":"臺華共同詞","連結":""},{"詞目":"家書","台羅":"ka-su","白話字":"ka-su","分類":"臺華共同詞","連結":""},{"詞目":"家財","台羅":"ka-tsâi","白話字":"ka-châi","分類":"臺華共同詞","連結":""},{"詞目":"咖啡廳","台羅":"ka-pi-thiann","白話字":"ka-pi-thiaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"解危","台羅":"kái-guî","白話字":"kái-gûi","分類":"臺華共同詞","連結":""},{"詞目":"解藥","台羅":"kái-io̍h","白話字":"kái-io̍h","分類":"臺華共同詞","連結":""},{"詞目":"解說員","台羅":"kái-sueh-uân/kái-seh-uân","白話字":"kái-soeh-oân/kái-seh-oân","分類":"臺華共同詞","連結":""},{"詞目":"改嫁","台羅":"kái-kè","白話字":"kái-kè","分類":"臺華共同詞","連結":""},{"詞目":"改期","台羅":"kái-kî","白話字":"kái-kî","分類":"臺華共同詞","連結":""},{"詞目":"改過","台羅":"kái-kò","白話字":"kái-kò","分類":"臺華共同詞","連結":""},{"詞目":"改名","台羅":"kái-miâ","白話字":"kái-miâ","分類":"臺華共同詞","連結":""},{"詞目":"改版","台羅":"kái-pán","白話字":"kái-pán","分類":"臺華共同詞","連結":""},{"詞目":"奸計","台羅":"kan-kè","白話字":"kan-kè","分類":"臺華共同詞","連結":""},{"詞目":"奸商","台羅":"kan-siong","白話字":"kan-siong","分類":"臺華共同詞","連結":""},{"詞目":"奸詐","台羅":"kan-tsà","白話字":"kan-chà","分類":"臺華共同詞","連結":""},{"詞目":"干戈","台羅":"kan-ko","白話字":"kan-ko","分類":"臺華共同詞","連結":""},{"詞目":"工藝品","台羅":"kang-gē-phín","白話字":"kang-gē-phín","分類":"臺華共同詞","連結":""},{"詞目":"工業化","台羅":"kang-gia̍p-huà","白話字":"kang-gia̍p-hòa","分類":"臺華共同詞","連結":""},{"詞目":"工業區","台羅":"kang-gia̍p-khu","白話字":"kang-gia̍p-khu","分類":"臺華共同詞","連結":""},{"詞目":"工本","台羅":"kang-pún","白話字":"kang-pún","分類":"臺華共同詞","連結":""},{"詞目":"工本費","台羅":"kang-pún-huì","白話字":"kang-pún-hùi","分類":"臺華共同詞","連結":""},{"詞目":"工時","台羅":"kang-sî","白話字":"kang-sî","分類":"臺華共同詞","連結":""},{"詞目":"工商業","台羅":"kang-siong-gia̍p","白話字":"kang-siong-gia̍p","分類":"臺華共同詞","連結":""},{"詞目":"工讀","台羅":"kang-tho̍k","白話字":"kang-tho̍k","分類":"臺華共同詞","連結":""},{"詞目":"工作坊","台羅":"kang-tsok-hng","白話字":"kang-chok-hng","分類":"臺華共同詞","連結":""},{"詞目":"工作服","台羅":"kang-tsok-ho̍k","白話字":"kang-chok-ho̍k","分類":"臺華共同詞","連結":""},{"詞目":"工作日","台羅":"kang-tsok-ji̍t/kang-tsok-li̍t","白話字":"kang-chok-ji̍t/kang-chok-li̍t","分類":"臺華共同詞","連結":""},{"詞目":"工作室","台羅":"kang-tsok-sik","白話字":"kang-chok-sek","分類":"臺華共同詞","連結":""},{"詞目":"工作證","台羅":"kang-tsok-tsìng","白話字":"kang-chok-chèng","分類":"臺華共同詞","連結":""},{"詞目":"交易所","台羅":"kau-i̍k-sóo","白話字":"kau-e̍k-só͘","分類":"臺華共同詞","連結":""},{"詞目":"交遊","台羅":"kau-iû","白話字":"kau-iû","分類":"臺華共同詞","連結":""},{"詞目":"交流道","台羅":"kau-liû-tō","白話字":"kau-liû-tō","分類":"臺華共同詞","連結":""},{"詞目":"交通部","台羅":"Kau-thong-pōo","白話字":"Kau-thong-pō͘","分類":"臺華共同詞","連結":""},{"詞目":"交際舞","台羅":"kau-tsè-bú","白話字":"kau-chè-bú","分類":"臺華共同詞","連結":""},{"詞目":"交手","台羅":"kau-tshiú","白話字":"kau-chhiú","分類":"臺華共同詞","連結":""},{"詞目":"交集","台羅":"kau-tsi̍p","白話字":"kau-chi̍p","分類":"臺華共同詞","連結":""},{"詞目":"教義","台羅":"kàu-gī","白話字":"kàu-gī","分類":"臺華共同詞","連結":""},{"詞目":"教皇","台羅":"kàu-hông","白話字":"kàu-hông","分類":"臺華共同詞","連結":""},{"詞目":"教化","台羅":"kàu-huà","白話字":"kàu-hòa","分類":"臺華共同詞","連結":""},{"詞目":"教育家","台羅":"kàu-io̍k-ka","白話字":"kàu-io̍k-ka","分類":"臺華共同詞","連結":""},{"詞目":"教育部","台羅":"Kàu-io̍k-pōo","白話字":"Kàu-io̍k-pō͘","分類":"臺華共同詞","連結":""},{"詞目":"教養院","台羅":"kàu-ióng-īnn","白話字":"kàu-ióng-īⁿ","分類":"臺華共同詞","連結":""},{"詞目":"開幕式","台羅":"khai-bōo-sik","白話字":"khai-bō͘-sek","分類":"臺華共同詞","連結":""},{"詞目":"開眼界","台羅":"khai-gán-kài","白話字":"khai-gán-kài","分類":"臺華共同詞","連結":""},{"詞目":"開演","台羅":"khai-ián","白話字":"khai-ián","分類":"臺華共同詞","連結":""},{"詞目":"開工","台羅":"khai-kang","白話字":"khai-kang","分類":"臺華共同詞","連結":""},{"詞目":"開賽","台羅":"khai-sài","白話字":"khai-sài","分類":"臺華共同詞","連結":""},{"詞目":"開示","台羅":"khai-sī","白話字":"khai-sī","分類":"臺華共同詞","連結":""},{"詞目":"開通","台羅":"khai-thong","白話字":"khai-thong","分類":"臺華共同詞","連結":""},{"詞目":"開獎","台羅":"khai-tsióng","白話字":"khai-chióng","分類":"臺華共同詞","連結":""},{"詞目":"空城","台羅":"khang-siânn","白話字":"khang-siâⁿ","分類":"臺華共同詞","連結":""},{"詞目":"空手道","台羅":"khang-tshiú-tō","白話字":"khang-chhiú-tō","分類":"臺華共同詞","連結":""},{"詞目":"口福","台羅":"kháu-hok","白話字":"kháu-hok","分類":"臺華共同詞","連結":""},{"詞目":"口傳","台羅":"kháu-thuân","白話字":"kháu-thoân","分類":"臺華共同詞","連結":""},{"詞目":"啟航","台羅":"khé-hâng","白話字":"khé-hâng","分類":"臺華共同詞","連結":""},{"詞目":"啟動","台羅":"khé-tōng","白話字":"khé-tōng","分類":"臺華共同詞","連結":""},{"詞目":"客氣話","台羅":"kheh-khì-uē","白話字":"kheh-khì-ōe","分類":"臺華共同詞","連結":""},{"詞目":"企業化","台羅":"khì-gia̍p-huà","白話字":"khì-gia̍p-hòa","分類":"臺華共同詞","連結":""},{"詞目":"企業家","台羅":"khì-gia̍p-ka","白話字":"khì-gia̍p-ka","分類":"臺華共同詞","連結":""},{"詞目":"刻印","台羅":"khik-ìn","白話字":"khek-ìn","分類":"臺華共同詞","連結":""},{"詞目":"刻字","台羅":"khik-jī/khik-lī","白話字":"khek-jī/khek-lī","分類":"臺華共同詞","連結":""},{"詞目":"刻苦","台羅":"khik-khóo","白話字":"khek-khó͘","分類":"臺華共同詞","連結":""},{"詞目":"欽佩","台羅":"khim-puē","白話字":"khim-pōe","分類":"臺華共同詞","連結":""},{"詞目":"輕刑","台羅":"khin-hîng","白話字":"khin-hêng","分類":"臺華共同詞","連結":""},{"詞目":"輕度","台羅":"khin-tōo","白話字":"khin-tō͘","分類":"臺華共同詞","連結":""},{"詞目":"勤快","台羅":"khîn-khuài","白話字":"khîn-khoài","分類":"臺華共同詞","連結":""},{"詞目":"輕微","台羅":"khing-bî","白話字":"kheng-bî","分類":"臺華共同詞","連結":""},{"詞目":"輕工業","台羅":"khing-kang-gia̍p","白話字":"kheng-kang-gia̍p","分類":"臺華共同詞","連結":""},{"詞目":"傾家蕩產","台羅":"khing-ka-tōng-sán","白話字":"kheng-ka-tōng-sán","分類":"臺華共同詞","連結":""},{"詞目":"吸血鬼","台羅":"khip-hiat-kuí","白話字":"khip-hiat-kúi","分類":"臺華共同詞","連結":""},{"詞目":"吸引力","台羅":"khip-ín-li̍k","白話字":"khip-ín-le̍k","分類":"臺華共同詞","連結":""},{"詞目":"吸入","台羅":"khip-ji̍p/khip-li̍p","白話字":"khip-ji̍p/khip-li̍p","分類":"臺華共同詞","連結":""},{"詞目":"吸力","台羅":"khip-li̍k","白話字":"khip-le̍k","分類":"臺華共同詞","連結":""},{"詞目":"吸盤","台羅":"khip-puânn","白話字":"khip-pôaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"吸塵器","台羅":"khip-tîn-khì","白話字":"khip-tîn-khì","分類":"臺華共同詞","連結":""},{"詞目":"康復","台羅":"khong-ho̍k","白話字":"khong-ho̍k","分類":"臺華共同詞","連結":""},{"詞目":"苦肉計","台羅":"khóo-jio̍k-kè/khóo-lio̍k-kè","白話字":"khó͘-jio̍k-kè/khó͘-lio̍k-kè","分類":"臺華共同詞","連結":""},{"詞目":"苦惱","台羅":"khóo-náu","白話字":"khó͘-náu","分類":"臺華共同詞","連結":""},{"詞目":"苦茶","台羅":"khóo-tê","白話字":"khó͘-tê","分類":"臺華共同詞","連結":""},{"詞目":"快報","台羅":"khuài-pò","白話字":"khoài-pò","分類":"臺華共同詞","連結":""},{"詞目":"快車道","台羅":"khuài-tshia-tō","白話字":"khoài-chhia-tō","分類":"臺華共同詞","連結":""},{"詞目":"開球","台羅":"khui-kiû","白話字":"khui-kiû","分類":"臺華共同詞","連結":""},{"詞目":"開班","台羅":"khui-pan","白話字":"khui-pan","分類":"臺華共同詞","連結":""},{"詞目":"紀念日","台羅":"kì-liām-ji̍t/kì-liām-li̍t","白話字":"kì-liām-ji̍t/kì-liām-li̍t","分類":"臺華共同詞","連結":""},{"詞目":"紀念品","台羅":"kì-liām-phín","白話字":"kì-liām-phín","分類":"臺華共同詞","連結":""},{"詞目":"記事","台羅":"kì-sū","白話字":"kì-sū","分類":"臺華共同詞","連結":""},{"詞目":"寄養","台羅":"kià-ióng","白話字":"kià-ióng","分類":"臺華共同詞","連結":""},{"詞目":"兼用","台羅":"kiam-iōng","白話字":"kiam-iōng","分類":"臺華共同詞","連結":""},{"詞目":"減刑","台羅":"kiám-hîng","白話字":"kiám-hêng","分類":"臺華共同詞","連結":""},{"詞目":"建交","台羅":"kiàn-kau","白話字":"kiàn-kau","分類":"臺華共同詞","連結":""},{"詞目":"健保卡","台羅":"kiān-pó-khah","白話字":"kiān-pó-khah","分類":"臺華共同詞","連結":""},{"詞目":"健身房","台羅":"kiān-sin-pâng","白話字":"kiān-sin-pâng","分類":"臺華共同詞","連結":""},{"詞目":"件數","台羅":"kiānn-sòo","白話字":"kiāⁿ-sò͘","分類":"臺華共同詞","連結":""},{"詞目":"激素","台羅":"kik-sòo","白話字":"kek-sò͘","分類":"臺華共同詞","連結":""},{"詞目":"激戰","台羅":"kik-tsiàn","白話字":"kek-chiàn","分類":"臺華共同詞","連結":""},{"詞目":"金融卡","台羅":"kim-iông-khah","白話字":"kim-iông-khah","分類":"臺華共同詞","連結":""},{"詞目":"金價","台羅":"kim-kè","白話字":"kim-kè","分類":"臺華共同詞","連結":""},{"詞目":"金礦","台羅":"kim-khòng","白話字":"kim-khòng","分類":"臺華共同詞","連結":""},{"詞目":"金黃色","台羅":"kim-n̂g-sik","白話字":"kim-n̂g-sek","分類":"臺華共同詞","連結":""},{"詞目":"今日","台羅":"kim-ji̍t/kim-li̍t","白話字":"kim-ji̍t/kim-li̍t","分類":"臺華共同詞","連結":""},{"詞目":"今世","台羅":"kim-sè","白話字":"kim-sè","分類":"臺華共同詞","連結":""},{"詞目":"今生","台羅":"kim-sing","白話字":"kim-seng","分類":"臺華共同詞","連結":""},{"詞目":"警備","台羅":"kíng-pī","白話字":"kéng-pī","分類":"臺華共同詞","連結":""},{"詞目":"警報器","台羅":"kíng-pò-khì","白話字":"kéng-pò-khì","分類":"臺華共同詞","連結":""},{"詞目":"警世","台羅":"kíng-sè","白話字":"kéng-sè","分類":"臺華共同詞","連結":""},{"詞目":"警示","台羅":"kíng-sī","白話字":"kéng-sī","分類":"臺華共同詞","連結":""},{"詞目":"警鐘","台羅":"kíng-tsing","白話字":"kéng-cheng","分類":"臺華共同詞","連結":""},{"詞目":"警政署","台羅":"Kíng-tsìng-sú","白話字":"Kéng-chèng-sú","分類":"臺華共同詞","連結":""},{"詞目":"共謀","台羅":"kiōng-bôo","白話字":"kiōng-bô͘","分類":"臺華共同詞","連結":""},{"詞目":"共和國","台羅":"kiōng-hô-kok","白話字":"kiōng-hô-kok","分類":"臺華共同詞","連結":""},{"詞目":"急診室","台羅":"kip-tsín-sik","白話字":"kip-chín-sek","分類":"臺華共同詞","連結":""},{"詞目":"高壓電","台羅":"ko-ap-tiān","白話字":"ko-ap-tiān","分類":"臺華共同詞","連結":""},{"詞目":"高原","台羅":"ko-guân","白話字":"ko-goân","分類":"臺華共同詞","連結":""},{"詞目":"高氣壓","台羅":"ko-khì-ap","白話字":"ko-khì-ap","分類":"臺華共同詞","連結":""},{"詞目":"高票","台羅":"ko-phiò","白話字":"ko-phiò","分類":"臺華共同詞","連結":""},{"詞目":"高深","台羅":"ko-tshim","白話字":"ko-chhim","分類":"臺華共同詞","連結":""},{"詞目":"功名","台羅":"kong-bîng","白話字":"kong-bêng","分類":"臺華共同詞","連結":""},{"詞目":"功過","台羅":"kong-kò","白話字":"kong-kò","分類":"臺華共同詞","連結":""},{"詞目":"公休","台羅":"kong-hiu","白話字":"kong-hiu","分類":"臺華共同詞","連結":""},{"詞目":"公開賽","台羅":"kong-khai-sài","白話字":"kong-khai-sài","分類":"臺華共同詞","連結":""},{"詞目":"廣告費","台羅":"kóng-kò-huì","白話字":"kóng-kò-hùi","分類":"臺華共同詞","連結":""},{"詞目":"廣場","台羅":"kóng-tiûnn","白話字":"kóng-tiûⁿ","分類":"臺華共同詞","連結":""},{"詞目":"舊型","台羅":"kū-hîng","白話字":"kū-hêng","分類":"臺華共同詞","連結":""},{"詞目":"舊貨","台羅":"kū-huè/kū-hè","白話字":"kū-hòe/kū-hè","分類":"臺華共同詞","連結":""},{"詞目":"舊例","台羅":"kū-lē","白話字":"kū-lē","分類":"臺華共同詞","連結":""},{"詞目":"舊地","台羅":"kū-tē/kū-tuē","白話字":"kū-tē/kū-tōe","分類":"臺華共同詞","連結":""},{"詞目":"舊制","台羅":"kū-tsè","白話字":"kū-chè","分類":"臺華共同詞","連結":""},{"詞目":"歌藝","台羅":"kua-gē","白話字":"koa-gē","分類":"臺華共同詞","連結":""},{"詞目":"歌譜","台羅":"kua-phóo","白話字":"koa-phó͘","分類":"臺華共同詞","連結":""},{"詞目":"掛號費","台羅":"kuà-hō-huì","白話字":"kòa-hō-hùi","分類":"臺華共同詞","連結":""},{"詞目":"管理費","台羅":"kuán-lí-huì","白話字":"koán-lí-hùi","分類":"臺華共同詞","連結":""},{"詞目":"管理員","台羅":"kuán-lí-uân","白話字":"koán-lí-oân","分類":"臺華共同詞","連結":""},{"詞目":"官府","台羅":"kuann-hú","白話字":"koaⁿ-hú","分類":"臺華共同詞","連結":""},{"詞目":"決意","台羅":"kuat-ì","白話字":"koat-ì","分類":"臺華共同詞","連結":""},{"詞目":"貴姓","台羅":"kuì-sènn/kuì-sìnn","白話字":"kùi-sèⁿ/kùi-sìⁿ","分類":"臺華共同詞","連結":""},{"詞目":"軍校","台羅":"kun-hāu","白話字":"kun-hāu","分類":"臺華共同詞","連結":""},{"詞目":"軍服","台羅":"kun-ho̍k","白話字":"kun-ho̍k","分類":"臺華共同詞","連結":""},{"詞目":"軍警","台羅":"kun-kíng","白話字":"kun-kéng","分類":"臺華共同詞","連結":""},{"詞目":"軍公教","台羅":"kun-kong-kàu","白話字":"kun-kong-kàu","分類":"臺華共同詞","連結":""},{"詞目":"軍糧","台羅":"kun-niû","白話字":"kun-niû","分類":"臺華共同詞","連結":""},{"詞目":"群組","台羅":"kûn-tsoo","白話字":"kûn-cho͘","分類":"臺華共同詞","連結":""},{"詞目":"獵物","台羅":"la̍h-bu̍t","白話字":"la̍h-bu̍t","分類":"臺華共同詞","連結":""},{"詞目":"內奸","台羅":"lāi-kan","白話字":"lāi-kan","分類":"臺華共同詞","連結":""},{"詞目":"南極洲","台羅":"Lâm-ki̍k-tsiu","白話字":"Lâm-ke̍k-chiu","分類":"臺華共同詞","連結":""},{"詞目":"難度","台羅":"lân-tōo","白話字":"lân-tō͘","分類":"臺華共同詞","連結":""},{"詞目":"老實話","台羅":"láu-si̍t-uē","白話字":"láu-si̍t-ōe","分類":"臺華共同詞","連結":""},{"詞目":"老人院","台羅":"lāu-lâng-īnn","白話字":"lāu-lâng-īⁿ","分類":"臺華共同詞","連結":""},{"詞目":"禮金","台羅":"lé-kim","白話字":"lé-kim","分類":"臺華共同詞","連結":""},{"詞目":"涼鞋","台羅":"liâng-ê/liâng-uê","白話字":"liâng-ê/liâng-ôe","分類":"臺華共同詞","連結":""},{"詞目":"涼椅","台羅":"liâng-í","白話字":"liâng-í","分類":"臺華共同詞","連結":""},{"詞目":"涼麵","台羅":"liâng-mī","白話字":"liâng-mī","分類":"臺華共同詞","連結":""},{"詞目":"涼蓆","台羅":"liâng-tshio̍h","白話字":"liâng-chhio̍h","分類":"臺華共同詞","連結":""},{"詞目":"攝影機","台羅":"liap-iánn-ki","白話字":"liap-iáⁿ-ki","分類":"臺華共同詞","連結":""},{"詞目":"療養院","台羅":"liâu-ióng-īnn","白話字":"liâu-ióng-īⁿ","分類":"臺華共同詞","連結":""},{"詞目":"旅行社","台羅":"lí-hîng-siā/lú-hîng-siā","白話字":"lí-hêng-siā/lú-hêng-siā","分類":"臺華共同詞","連結":""},{"詞目":"女工","台羅":"lí-kang/lú-kang","白話字":"lí-kang/lú-kang","分類":"臺華共同詞","連結":""},{"詞目":"林務","台羅":"lîm-bū","白話字":"lîm-bū","分類":"臺華共同詞","連結":""},{"詞目":"林區","台羅":"lîm-khu","白話字":"lîm-khu","分類":"臺華共同詞","連結":""},{"詞目":"林場","台羅":"lîm-tiûnn","白話字":"lîm-tiûⁿ","分類":"臺華共同詞","連結":""},{"詞目":"臨時工","台羅":"lîm-sî-kang","白話字":"lîm-sî-kang","分類":"臺華共同詞","連結":""},{"詞目":"領空","台羅":"líng-khong","白話字":"léng-khong","分類":"臺華共同詞","連結":""},{"詞目":"領悟","台羅":"líng-ngōo","白話字":"léng-ngō͘","分類":"臺華共同詞","連結":""},{"詞目":"領事館","台羅":"líng-sū-kuán","白話字":"léng-sū-koán","分類":"臺華共同詞","連結":""},{"詞目":"良善","台羅":"liông-siān","白話字":"liông-siān","分類":"臺華共同詞","連結":""},{"詞目":"立業","台羅":"li̍p-gia̍p","白話字":"li̍p-gia̍p","分類":"臺華共同詞","連結":""},{"詞目":"立憲","台羅":"li̍p-hiàn","白話字":"li̍p-hiàn","分類":"臺華共同詞","連結":""},{"詞目":"立功","台羅":"li̍p-kong","白話字":"li̍p-kong","分類":"臺華共同詞","連結":""},{"詞目":"留學生","台羅":"liû-ha̍k-sing","白話字":"liû-ha̍k-seng","分類":"臺華共同詞","連結":""},{"詞目":"留任","台羅":"liû-jīm/liû-līm","白話字":"liû-jīm/liû-līm","分類":"臺華共同詞","連結":""},{"詞目":"流派","台羅":"liû-phài","白話字":"liû-phài","分類":"臺華共同詞","連結":""},{"詞目":"錄影帶","台羅":"lo̍k-iánn-tuà","白話字":"lo̍k-iáⁿ-tòa","分類":"臺華共同詞","連結":""},{"詞目":"錄音室","台羅":"lo̍k-im-sik","白話字":"lo̍k-im-sek","分類":"臺華共同詞","連結":""},{"詞目":"農家","台羅":"lông-ka","白話字":"lông-ka","分類":"臺華共同詞","連結":""},{"詞目":"內應","台羅":"luē-ìng","白話字":"lōe-èng","分類":"臺華共同詞","連結":""},{"詞目":"麵店","台羅":"mī-tiàm","白話字":"mī-tiàm","分類":"臺華共同詞","連結":""},{"詞目":"命數","台羅":"miā-sòo","白話字":"miā-sò͘","分類":"臺華共同詞","連結":""},{"詞目":"妙用","台羅":"miāu-iōng","白話字":"miāu-iōng","分類":"臺華共同詞","連結":""},{"詞目":"妙計","台羅":"miāu-kè","白話字":"miāu-kè","分類":"臺華共同詞","連結":""},{"詞目":"魔術師","台羅":"môo-su̍t-su","白話字":"mô͘-su̍t-su","分類":"臺華共同詞","連結":""},{"詞目":"冒充","台羅":"mōo-tshiong","白話字":"mō͘-chhiong","分類":"臺華共同詞","連結":""},{"詞目":"滿月酒","台羅":"muá-gue̍h-tsiú/muá-ge̍h-tsiú","白話字":"móa-goe̍h-chiú/móa-ge̍h-chiú","分類":"臺華共同詞","連結":""},{"詞目":"滿分","台羅":"muá-hun","白話字":"móa-hun","分類":"臺華共同詞","連結":""},{"詞目":"麻黃","台羅":"muâ-hông","白話字":"môa-hông","分類":"臺華共同詞","連結":""},{"詞目":"麻油雞","台羅":"muâ-iû-ke/muâ-iû-kue","白話字":"môa-iû-ke/môa-iû-koe","分類":"臺華共同詞","連結":""},{"詞目":"耐力","台羅":"nāi-li̍k","白話字":"nāi-le̍k","分類":"臺華共同詞","連結":""},{"詞目":"腦瘤","台羅":"náu-liû","白話字":"náu-liû","分類":"臺華共同詞","連結":""},{"詞目":"腦神經","台羅":"náu-sîn-king","白話字":"náu-sîn-keng","分類":"臺華共同詞","連結":""},{"詞目":"腦充血","台羅":"náu-tshiong-hiat","白話字":"náu-chhiong-hiat","分類":"臺華共同詞","連結":""},{"詞目":"年老","台羅":"nî-lāu","白話字":"nî-lāu","分類":"臺華共同詞","連結":""},{"詞目":"年輪","台羅":"nî-lûn","白話字":"nî-lûn","分類":"臺華共同詞","連結":""},{"詞目":"領養","台羅":"niá-ióng","白話字":"niá-ióng","分類":"臺華共同詞","連結":""},{"詞目":"糧倉","台羅":"niû-tshng","白話字":"niû-chhng","分類":"臺華共同詞","連結":""},{"詞目":"軟禁","台羅":"nńg-kìm","白話字":"nńg-kìm","分類":"臺華共同詞","連結":""},{"詞目":"怒氣","台羅":"nōo-khì","白話字":"nō͘-khì","分類":"臺華共同詞","連結":""},{"詞目":"判決書","台羅":"phuànn-kuat-su","白話字":"phòaⁿ-koat-su","分類":"臺華共同詞","連結":""},{"詞目":"大人物","台羅":"tāi-jîn-bu̍t/tāi-lîn-bu̍t","白話字":"tāi-jîn-bu̍t/tāi-lîn-bu̍t","分類":"臺華共同詞","連結":""},{"詞目":"代理人","台羅":"tāi-lí-lâng","白話字":"tāi-lí-lâng","分類":"臺華共同詞","連結":""},{"詞目":"代理商","台羅":"tāi-lí-siong","白話字":"tāi-lí-siong","分類":"臺華共同詞","連結":""},{"詞目":"耽誤","台羅":"tam-gōo","白話字":"tam-gō͘","分類":"臺華共同詞","連結":""},{"詞目":"投影片","台羅":"tâu-iánn-phìnn","白話字":"tâu-iáⁿ-phìⁿ","分類":"臺華共同詞","連結":""},{"詞目":"短篇","台羅":"té-phinn","白話字":"té-phiⁿ","分類":"臺華共同詞","連結":""},{"詞目":"地府","台羅":"tē-hú/tuē-hú","白話字":"tē-hú/tōe-hú","分類":"臺華共同詞","連結":""},{"詞目":"地勢","台羅":"tē-sè/tuē-sè","白話字":"tē-sè/tōe-sè","分類":"臺華共同詞","連結":""},{"詞目":"篩選","台羅":"thai-suán","白話字":"thai-soán","分類":"臺華共同詞","連結":""},{"詞目":"頭版","台羅":"thâu-pán","白話字":"thâu-pán","分類":"臺華共同詞","連結":""},{"詞目":"頭條","台羅":"thâu-tiâu","白話字":"thâu-tiâu","分類":"臺華共同詞","連結":""},{"詞目":"退休金","台羅":"thè-hiu-kim","白話字":"thè-hiu-kim","分類":"臺華共同詞","連結":""},{"詞目":"退回","台羅":"thè-huê","白話字":"thè-hôe","分類":"臺華共同詞","連結":""},{"詞目":"天敵","台羅":"thian-ti̍k","白話字":"thian-te̍k","分類":"臺華共同詞","連結":""},{"詞目":"天主教","台羅":"Thian-tsú-kàu","白話字":"Thian-chú-kàu","分類":"臺華共同詞","連結":""},{"詞目":"聽寫","台羅":"thiann-siá","白話字":"thiaⁿ-siá","分類":"臺華共同詞","連結":""},{"詞目":"鐵工廠","台羅":"thih-kang-tshiúnn","白話字":"thih-kang-chhiúⁿ","分類":"臺華共同詞","連結":""},{"詞目":"鐵飯碗","台羅":"thih-pn̄g-uánn","白話字":"thih-pn̄g-óaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"停車費","台羅":"thîng-tshia-huì","白話字":"thêng-chhia-hùi","分類":"臺華共同詞","連結":""},{"詞目":"畜牧","台羅":"thiok-bo̍k","白話字":"thiok-bo̍k","分類":"臺華共同詞","連結":""},{"詞目":"畜產","台羅":"thiok-sán","白話字":"thiok-sán","分類":"臺華共同詞","連結":""},{"詞目":"傳染病","台羅":"thuân-jiám-pēnn/thuân-liám-pīnn","白話字":"thoân-jiám-pēⁿ/thoân-liám-pīⁿ","分類":"臺華共同詞","連結":""},{"詞目":"傳教士","台羅":"thuân-kàu-sū","白話字":"thoân-kàu-sū","分類":"臺華共同詞","連結":""},{"詞目":"推演","台羅":"thui-ián","白話字":"thui-ián","分類":"臺華共同詞","連結":""},{"詞目":"推派","台羅":"thui-phài","白話字":"thui-phài","分類":"臺華共同詞","連結":""},{"詞目":"電費","台羅":"tiān-huì","白話字":"tiān-hùi","分類":"臺華共同詞","連結":""},{"詞目":"電器行","台羅":"tiān-khì-hâng","白話字":"tiān-khì-hâng","分類":"臺華共同詞","連結":""},{"詞目":"哲學家","台羅":"tiat-ha̍k-ka","白話字":"tiat-ha̍k-ka","分類":"臺華共同詞","連結":""},{"詞目":"雕刻家","台羅":"tiau-khik-ka","白話字":"tiau-khek-ka","分類":"臺華共同詞","連結":""},{"詞目":"調用","台羅":"tiàu-iōng","白話字":"tiàu-iōng","分類":"臺華共同詞","連結":""},{"詞目":"調任","台羅":"tiàu-jīm/tiàu-līm","白話字":"tiàu-jīm/tiàu-līm","分類":"臺華共同詞","連結":""},{"詞目":"調教","台羅":"tiâu-kàu","白話字":"tiâu-kàu","分類":"臺華共同詞","連結":""},{"詞目":"調味","台羅":"tiâu-bī","白話字":"tiâu-bī","分類":"臺華共同詞","連結":""},{"詞目":"召見","台羅":"tiàu-kiàn","白話字":"tiàu-kiàn","分類":"臺華共同詞","連結":""},{"詞目":"特級","台羅":"ti̍k-kip","白話字":"te̍k-kip","分類":"臺華共同詞","連結":""},{"詞目":"特派","台羅":"ti̍k-phài","白話字":"te̍k-phài","分類":"臺華共同詞","連結":""},{"詞目":"特製","台羅":"ti̍k-tsè","白話字":"te̍k-chè","分類":"臺華共同詞","連結":""},{"詞目":"竹籠","台羅":"tik-láng","白話字":"tek-láng","分類":"臺華共同詞","連結":""},{"詞目":"竹林","台羅":"tik-nâ","白話字":"tek-nâ","分類":"臺華共同詞","連結":""},{"詞目":"鎮公所","台羅":"tìn-kong-sóo","白話字":"tìn-kong-só͘","分類":"臺華共同詞","連結":""},{"詞目":"陣線","台羅":"tīn-suànn","白話字":"tīn-sòaⁿ","分類":"臺華共同詞","連結":""},{"詞目":"重用","台羅":"tiōng-iōng","白話字":"tiōng-iōng","分類":"臺華共同詞","連結":""},{"詞目":"重任","台羅":"tiōng-jīm/tiōng-līm","白話字":"tiōng-jīm/tiōng-līm","分類":"臺華共同詞","連結":""},{"詞目":"豬排","台羅":"ti-pâi/tu-pâi","白話字":"ti-pâi/tu-pâi","分類":"臺華共同詞","連結":""},{"詞目":"毒酒","台羅":"to̍k-tsiú","白話字":"to̍k-chiú","分類":"臺華共同詞","連結":""},{"詞目":"毒蛇","台羅":"to̍k-tsuâ","白話字":"to̍k-chôa","分類":"臺華共同詞","連結":""},{"詞目":"同鄉會","台羅":"tông-hiong-huē","白話字":"tông-hiong-hōe","分類":"臺華共同詞","連結":""},{"詞目":"度日","台羅":"tōo-ji̍t/tōo-li̍t","白話字":"tō͘-ji̍t/tō͘-li̍t","分類":"臺華共同詞","連結":""},{"詞目":"大家庭","台羅":"tuā-ka-tîng","白話字":"tōa-ka-têng","分類":"臺華共同詞","連結":""},{"詞目":"追問","台羅":"tui-mn̄g","白話字":"tui-mn̄g","分類":"臺華共同詞","連結":""}];
+
+// ── STATE ──
+let useRom = 'tai'; // 'tai' | 'poj'
+let activeFilter = 'all';
+let searchQ = '';
+
+// ── RENDER ──
+function getRom(item) {
+  return useRom === 'tai' ? item['台羅'] : item['白話字'];
+}
+
+function getFiltered() {
+  return DATA.filter((d, i) => {
+    const catOk = activeFilter === 'all' || d['分類'] === activeFilter;
+    const q = searchQ.trim().toLowerCase();
+    if (!q) return catOk;
+    const searchIn = (d['詞目'] + d['台羅'] + d['白話字']).toLowerCase();
+    return catOk && searchIn.includes(q);
+  });
+}
+
+function render() {
+  const filtered = getFiltered();
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const tr = document.createElement('tr');
+    tr.className = 'empty-row';
+    tr.innerHTML = `<td colspan="5">查無結果 ・ Bô-khuē-tio̍h</td>`;
+    tbody.appendChild(tr);
+    updateInfo(0);
+    return;
+  }
+
+  filtered.forEach((item, idx) => {
+    const hasLink = item['連結'] && item['連結'].trim() !== '';
+    const evenClass = idx % 2 === 1 ? ' even' : '';
+    const rowId = 'entry-' + idx;
+
+    // Main row
+    const tr = document.createElement('tr');
+    tr.className = 'entry-row' + evenClass;
+    tr.id = rowId;
+
+    const btnHtml = hasLink
+      ? `<a class="open-link-btn" href="${item['連結']}" target="_blank" rel="noopener" title="開啟辭典頁面">↗ 開啟</a>`
+      : `<span style="color:var(--border);font-size:0.7rem;opacity:0.4">—</span>`;
+
+    tr.innerHTML = `
+      <td class="col-num" style="display:none"></td>
+      <td class="col-word">${item['詞目']}</td>
+      <td class="col-rom rom-cell">${getRom(item)}</td>
+      <td class="col-cat"><span class="cat-badge cat-${item['分類']}">${item['分類']}</span></td>
+      <td class="col-preview">${btnHtml}</td>
+    `;
+    tbody.appendChild(tr);
+
+
+  });
+
+  updateInfo(filtered.length);
+}
+
+
+
+function updateInfo(count) {
+  const total = DATA.length;
+  document.getElementById('result-info').textContent =
+    count === total
+      ? `共 ${total} 筆`
+      : `顯示 ${count} / ${total} 筆`;
+}
+
+// ── FILTER ──
+function setFilter(cat, el) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+// ── SEARCH ──
+function doSearch() {
+  searchQ = document.getElementById('searchInput').value;
+  render();
+}
+
+// ── ROM TOGGLE ──
+function toggleRom() {
+  useRom = useRom === 'tai' ? 'poj' : 'tai';
+  const tai = document.getElementById('rom-tai');
+  const poj = document.getElementById('rom-poj');
+  const thLabel = document.getElementById('th-rom-label');
+
+  if (useRom === 'tai') {
+    tai.classList.add('active'); poj.classList.remove('active');
+    thLabel.textContent = '台羅・';
+  } else {
+    poj.classList.add('active'); tai.classList.remove('active');
+    thLabel.textContent = '白話字・';
+  }
+
+  // Update all visible rom cells
+  document.querySelectorAll('.rom-cell').forEach((cell, i) => {
+    const filtered = getFiltered();
+    if (filtered[i]) cell.textContent = getRom(filtered[i]);
+  });
+}
+
+// ── INIT ──
+render();
+</script>
+</body>
+</html>
